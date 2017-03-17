@@ -1,0 +1,48 @@
+#!/bin/bash
+# Program for creating directory structure for kvm.  
+# chmod 0750  and make it executable
+# Tested = Yes
+
+TMPLDIR="Templates"
+ISODIR="ISO"
+LINKED="Linked"
+BACKING="Backing"
+
+if [ ! -d "$TMPLDIR" ]
+then
+    
+    mkdir $TMPLDIR
+    echo "Template Directory Create Successfully"
+else
+    echo "Template Directory Already Exists, Skipping"
+
+fi
+if [ ! -d "$ISODIR" ]
+then
+    
+    mkdir $ISODIR
+    echo "ISO Directory Create Successfully"
+else
+    echo "ISO Directory Already Exists, Skipping"
+fi
+
+if [ ! -d "$LINKED" ]
+then
+    
+    mkdir $LINKED
+    echo "Linked Directory Create Successfully"
+else
+    echo "Linked Directory Already Exists, Skipping"
+fi
+
+if [ ! -d "$BACKING" ]
+then
+    
+    mkdir $BACKING
+    echo "Template Directory Create Successfully"
+else
+    echo "Backing Directory Already Exists, Skipping"
+
+
+fi
+	
