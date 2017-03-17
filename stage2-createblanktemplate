@@ -1,0 +1,77 @@
+#!/bin/bash
+#  Program  to create Blank Template for OS Installation. 
+#  Tested : Ok
+
+clear
+echo -e "===================================================================="
+echo "First will check Disk Space! "
+echo -e "===================================================================="
+sleep 1
+
+space=`df -h | awk '{print $5}' | grep % | grep -v Use | sort -n | tail -1 | cut -d "%" -f1 -`
+
+case $space in
+[1-6]*)
+  Message="Aappears to have enough space."
+  ;;
+[7-8]*)
+  Message=" Warning ! There's a partition that is $space % full."
+  ;;
+9[1-8])
+  Message="Strict Warning !! Better hurry with that new disk...  One partition is $space % full."
+  ;;
+99)
+  Message="Notice !!!  There's a partition at $space %!"
+  ;;
+*)
+  Message="There is no diskspace available ..."
+  ;;
+esac
+echo $Message
+echo -e "============================================================================"
+
+echo -e "This program will create Blank Template for your proposed OS Installation\n"
+echo -e "\n"
+echo -e "============================================================================="
+echo -e "\n"
+now=$(date +"%d_%m_%Y:%H:%M")
+echo -e "Please Select OS Family -- Please Key in appropriate Number"
+echo -e "\n"
+osfamily=("Microsoft" "Linux" "Bsd" "Custom" )
+select osfam in "${osfamily[@]}"
+	do
+	case "$osfam" in
+		"Microsoft")
+		osfam="Ms"
+			break
+		;;
+		"Linux")
+		osfam="Lin"
+			break
+		;;
+		"Bsd")
+		osfam="Bsd"
+			break
+		;;
+		"Custom")
+		osfam="Cust"
+			break
+		;;
+        *) echo invalid option;;
+    esac
+done
+
+
+unset get_num
+    while [[ ! ${get_num} =~ ^([1-9]|1[0-9]|2[0-9]|2048)$ ]]; do
+        echo "Please Enter Proposed Size of Disk (Value Betwen 1-2048):"
+        read get_num
+    done
+
+echo "Please Enter OS Name in oneword without space (Win7, Win8, Win10, Win2k8-Srv, Win2012-srv, Ubuntu, Red-Hat, Cent-OS, Fedora Etc )"
+read osname
+qemu-img create -f qcow2 Templates/$osfam-$osname-$now.tmpl $get_num"G" >/dev/null 2>&1
+echo -e "=============================================================================  "
+echo -e "| Your Blank  Template $osfam-$osname-$now.tmpl  is successfuly Created !!!\n" 
+echo -e "=============================================================================  "
+echo -e " Bye .. bye"
