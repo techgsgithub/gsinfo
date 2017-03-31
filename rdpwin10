@@ -1,0 +1,13 @@
+Multiple RDP Sessions on Windows 10.
+
+Download and extract RDPWrap-v1.6.1.zip (https://github.com/stascorp/rdpwrap/releases/download/v1.6.1/RDPWrap-v1.6.1.zip),  unzip on a separate folder on Windows 10 Desktop  then run install.bat as admin. After installation is completed, run RDPConfig.exe.
+
+Enable RDP on Windows 10
+
+Create new user and select the user as rdp user .
+
+
+ If all items under Diagnostics are green, you should be good to go.
+
+
+Try RDP Session from other machine,,,  You will be able to login with new user created earlier without signing off the live session on Win 10 host.
