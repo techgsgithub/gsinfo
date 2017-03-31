@@ -11,3 +11,12 @@ Create new user and select the user as rdp user .
 
 
 Try RDP Session from other machine,,,  You will be able to login with new user created earlier without signing off the live session on Win 10 host.
+
+
+
+Key features:
+
+    RDP host server on any Windows edition beginning from Vista  ( Vista, win7, win 8, win 8.1, win 10 )
+    Console and remote sessions at the same time
+    Using the same user simultaneously for local and remote logon (see configuration app)
+    Up to 15 concurrent sessions (the actual limitation depends on your hardware and OS version)
