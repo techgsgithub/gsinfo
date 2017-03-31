@@ -20,3 +20,62 @@ Key features:
     Console and remote sessions at the same time
     Using the same user simultaneously for local and remote logon (see configuration app)
     Up to 15 concurrent sessions (the actual limitation depends on your hardware and OS version)
+    
+    
+    
+    
+    Windows Vista Starter (x86 - Service Pack 1 and higher)
+    Windows Vista Home Basic
+    Windows Vista Home Premium
+    Windows Vista Business
+    Windows Vista Enterprise
+    Windows Vista Ultimate
+    Windows Server 2008
+    Windows 7 Starter
+    Windows 7 Home Basic
+    Windows 7 Home Premium
+    Windows 7 Professional
+    Windows 7 Enterprise
+    Windows 7 Ultimate
+    Windows Server 2008 R2
+    Windows 8 Developer Preview
+    Windows 8 Consumer Preview
+    Windows 8 Release Preview
+    Windows 8
+    Windows 8 Single Language
+    Windows 8 Pro
+    Windows 8 Enterprise
+    Windows Server 2012
+    Windows 8.1 Preview
+    Windows 8.1
+    Windows 8.1 Connected (with Bing)
+    Windows 8.1 Single Language
+    Windows 8.1 Connected Single Language (with Bing)
+    Windows 8.1 Pro
+    Windows 8.1 Enterprise
+    Windows Server 2012 R2
+    Windows 10 Technical Preview
+    Windows 10 Pro Technical Preview
+    Windows 10 Home
+    Windows 10 Home Single Language
+    Windows 10 Pro
+    Windows 10 Enterprise
+    Windows Server 2016 Technical Preview
+
+Installation instructions:
+
+    Download latest release binaries and unpack files
+    Right-click on install.bat and select Run as Administrator
+    See command output for details
+
+To update INI file:
+
+    Right-click on update.bat and select Run as Administrator
+    See command output for details
+
+To uninstall:
+
+    Go to the directory where you extracted the files
+    Right-click on uninstall.bat and select Run as Administrator
+    See command output for details
+
