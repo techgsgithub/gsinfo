@@ -1,0 +1,28 @@
+
+
+Create following file in iso directory and mark it executable
+
+###########################
+cd 
+timestamp=$(date +%d-%B-%Y-%HHrs-%MMins-%SSeconds)
+file="/home/administrator/iso/log/update.log"
+if [ -f $file ] ; then
+cp -a "$file" "$file-$timestamp"
+fi
+
+cd /home/administrator/iso
+
+#Update Ubuntu Desktop 
+#zsync http://releases.ubuntu.com/16.04/ubuntu-16.04.1-desktop-amd64.iso.zsync
+zsync http://cdimage.ubuntu.com/xenial/daily-live/pending/xenial-desktop-amd64.iso.zsync
+#Update Ubuntu Server
+#zsync http://releases.ubuntu.com/16.04/ubuntu-16.04.1-server-amd64.iso.zsync
+zsync http://cdimage.ubuntu.com/ubuntu-server/xenial/daily/pending/xenial-server-amd64.iso.zsync
+# Remove Old Files
+rm *old
+#
+cd
+##############################
+
+Crontab entry  (crontab -e)
+5 00 * * *  sh /home/administrator/iso/updateubuntu.sh  >> /home/administrator/iso/log/update.log  2>&1
