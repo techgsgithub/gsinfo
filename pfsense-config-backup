@@ -1,0 +1,16 @@
+=========================================
+fwbackup.sh  in firewall folder 
+implemented passwordless login on pfsense
+========================================
+cd 
+cd /home/administrator/Firewall
+timestamp=$(date +%d-%B-%Y-%HHrs-%MMins-%SSeconds)
+scp -P 2226 root@10.0.0.1:/conf/config.xml /home/administrator/Firewall/config.xml
+f=config.xml
+cp -a "$f" "$f-$timestamp"
+cd 
+=============================================
+crontab -e entry 
+
+42 22 * * *  sh /home/administrator/Firewall/fwbackup.sh >> /home/administrator/Firewall/log/backup.log 2>&1
+=========================================================================
