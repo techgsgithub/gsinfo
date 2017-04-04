@@ -1,0 +1,27 @@
+
+Create /root/log directory
+
+As a root create following file in /root directory
+======
+file name : updateos.sh
+#####
+cd
+cd /root/log
+timestamp=$(date +%d-%B-%Y-%HHrs-%MMins-%SSeconds)
+apt -y update 
+sleep 30
+sync
+apt -y upgrade  
+sleep 30
+sync
+apt -y autoremove
+f=updateos.log
+cp -a "$f" "$f-$timestamp"
+cd 
+sleep 30
+echo 3 | sudo tee /proc/sys/vm/drop_caches
+#####
+
+crontab -e   Entry.
+0 22 * * *  sh /root/updateos.sh >> /root/log/updateos.log 2>&1
+
