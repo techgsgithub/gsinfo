@@ -1,0 +1,7 @@
+open sshd configuration file /etc/ssh/sshd_config and change line
+
+FROM:
+PermitRootLogin prohibit-password
+TO:
+PermitRootLogin yes
+systemctl restart sshd
