@@ -1,0 +1,25 @@
+#!/bin/bash
+VMPATH=/odata/VM/testvm
+VMBACK=/odata/VM/testvm/vmback
+if [ -z "$1" ]
+  then
+    echo "No VM name passed"
+    echo "Usage: command VM_NAME"
+    exit 1
+fi
+VM=$1
+virsh dominfo $VM 2>&1 > /dev/null
+status=$?
+if  [ $status -ne 0 ]
+  then
+  echo "Wrong VM name!"
+  exit 1
+fi
+#DIR=$VMPATH/$VM-`date  +%d-%m-%Y_%H-%M`
+mkdir -pv $VMBACK
+cd $VMBACK
+virsh suspend $VM
+virsh dumpxml $VM > $VM-`date  +%d-%m-%Y_%H-%M`.xml
+lzop $VMPATH/$VM.img -o $VMBACK/$VM.img.`date  +%d-%m-%Y_%H-%M`.lzop
+virsh resume $VM
+exit 0
