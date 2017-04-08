@@ -1,0 +1,63 @@
+
+1. Create this file.
+
+filename = snap.sh
+make it executable (chmod +x  snap.sh )
+===========================
+Listing
+===========================
+#!/bin/bash
+DOMAIN="srv1"
+TS=`date +%d%m%Y%H%M`
+SNAPSHOT_NAME=$TS
+
+VM_FOLDER="/odata/VM/testvm"
+SNAPSHOT_FOLDER="`echo $VM_FOLDER`/`echo $DOMAIN`/snapshots/`echo $TS`"
+mkdir -p $SNAPSHOT_FOLDER
+
+MEM_FILE="`echo $SNAPSHOT_FOLDER`/mem.img"
+DISK_FILE="`echo $SNAPSHOT_FOLDER`/disk.img"
+
+# Find out if running or not
+STATE=`virsh dominfo $DOMAIN | grep "State" | cut -d " " -f 11`
+
+if [ "$STATE" = "running" ]; then
+
+    virsh snapshot-create-as \
+    --domain $DOMAIN $SNAPSHOT_NAME \
+    --diskspec vda,file=$DISK_FILE,snapshot=external \
+    --memspec file=$MEM_FILE,snapshot=external \
+    --atomic
+
+else
+
+    virsh snapshot-create-as \
+    --domain $DOMAIN $SNAPSHOT_NAME \
+    --diskspec vda,file=$DISK_FILE,snapshot=external \
+    --disk-only \
+    --atomic
+
+fi
+======================================================================================
+The format of the create file will be :  like 080420171526  (first two numbers = date,  next two numbers denotes month,
+next four numbers = Year  next two numbers hours(24hrformat),  next two numbers denotes minuts )
+
+Important Note :  
+Earlier file becomes a backing for next snapshot.  Hence do not delete any snap shot --very important one.
+======================================================================================
+If you want to restore earlier stage 
+A.  Shutdown the VM
+B.  You will need to edit vm's xml file using vi commands.  Point the file towards the selecte snapshot disk file. 
+    command : virsh edit srv1  ( example ) .  Then delete all further snapshot taken after the selected snapshot ( read below carefuly )
+C.  You can find all the snapshots :  
+command :  virsh snapshot-list srv1
+d.  Deleting snapshot :  virsh snapshot-delete srv1  --metadata 080420171506   (  You will also delete 
+the physical file of shapshot of deleted snapshot manually.)
+e.  Recheck everything again.
+f.  Start the vm.
+
+
+
+
+
+ 
