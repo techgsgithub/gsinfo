@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 #Author GS
 #Program to create full export VM 
 clear
@@ -17,7 +17,7 @@ STATE=`virsh dominfo $1 | grep "State" | cut -d " " -f 11`
 if [ "$STATE" = "running" ]; then
 	
 	printf "\n"
-	printf "Your VM $1 is in running condition, hence shut-down of  $1 is necessory. \n"
+	printf "Your VM $1 is in running condition, hence shut-down of  $1 is must. \n"
 	printf "Otherwise, you will get corrupt Exported image. \n"
 	read -p "Do you want to stop the VM ? (Y/N)" prompt 
 	if [[ $prompt == "y" || $prompt == "Y" || $prompt == "yes" || $prompt == "Yes" ]]
